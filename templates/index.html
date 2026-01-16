@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #1d2671, #c33764);
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -21,64 +21,72 @@
             background: #ffffff;
             width: 100%;
             max-width: 420px;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 28px;
+            border-radius: 14px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             text-align: center;
         }
 
         h2 {
-            margin-bottom: 15px;
-            color: #333;
+            margin-bottom: 20px;
+            color: #222;
         }
 
         input[type="text"] {
             width: 100%;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 14px;
+            border-radius: 10px;
             border: 1px solid #ccc;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             font-size: 16px;
         }
 
         button {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             border: none;
-            border-radius: 8px;
-            background: #1d2671;
+            border-radius: 10px;
+            background: #203a43;
             color: white;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
         }
 
         button:hover {
-            background: #151b4f;
+            background: #162a32;
         }
 
+        /* RESULT BOX */
         .result {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 18px;
+            margin-top: 22px;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 20px;
             font-weight: bold;
+            text-align: center;
         }
 
+        /* SPAM */
         .spam {
-            background: #ffe6e6;
-            color: #b30000;
+            background: #ffebeb;
+            border: 2px solid #e60000;
+            color: #e60000;
         }
 
+        /* LEGIT */
         .legit {
-            background: #e6ffed;
-            color: #006b2e;
+            background: #eafff0;
+            border: 2px solid #00a651;
+            color: #008a44;
         }
 
         .url {
             font-size: 14px;
-            color: #555;
-            margin-top: 8px;
+            color: #444;
+            margin-top: 10px;
             word-break: break-all;
+            font-weight: normal;
         }
     </style>
 </head>
@@ -95,7 +103,11 @@
 
         {% if prediction %}
             <div class="result {% if 'Spam' in prediction %}spam{% else %}legit{% endif %}">
-                {{ prediction }}
+                {% if 'Spam' in prediction %}
+                    🚨 SPAM WEBSITE
+                {% else %}
+                    ✅ LEGITIMATE WEBSITE
+                {% endif %}
                 <div class="url">{{ url }}</div>
             </div>
         {% endif %}
